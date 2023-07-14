@@ -5,7 +5,8 @@ const city_name = document.getElementById('city_name');
 const temp_real_val = document.getElementById('temp_real_val');
 const temp_status = document.getElementById('temp_status');
 const datahide = document.querySelector('.middle_layer');
-
+const curday =document.getElementById('day');
+const curDate  =document.getElementById('today_date');
 const getInfo = async(event) => {
     event.preventDefault();
 
@@ -40,12 +41,15 @@ const getInfo = async(event) => {
             } else if (tempMood == "Rain") {
             temp_status.innerHTML =
                 "<i class='fas  fa-cloud-rain' style='color: #a4b0be;'></i>";
-            } else {
+            } else if (tempMood == "Haze") {
+                temp_status.innerHTML =
+                    "<i class='fas  fa-cloud-haze' style='color: #a4b0be;'></i>";
+                } else {
             temp_status.innerHTML =
                 "<i class='fas  fa-cloud' style='color:#f1f2f6;'></i>";
 
             }
-            
+
             datahide.classList.remove('data_hide');
             cityVal = "";
            
@@ -59,5 +63,35 @@ const getInfo = async(event) => {
         
     }
 }
+const getCurrentDay = ()=>{
+    let currentTime = new Date();
+    const weekday = new Array(7);
+    weekday[0]="Sunday";
+    weekday[1]="Monday";
+    weekday[2]="Tuesday";
+    weekday[3]="Wednesday";
+    weekday[4]="Thursday";
+    weekday[5]="Friday";
+    weekday[6]="Saturday";
+    
+    return weekday[currentTime.getDay()];
+
+}
+
+const getCurrentTime = ()=>{
+    let now = new Date();
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            
+    var month = months[now.getMonth() +1];
+
+    var day = now.getDate();
+    
+    return day + " " + month;
+    
+}
+curday.innerHTML = getCurrentDay();
+ curDate.innerHTML =getCurrentTime();
+
+
 
 submitBtn.addEventListener('click', getInfo);
