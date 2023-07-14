@@ -82,7 +82,7 @@ const getCurrentTime = ()=>{
     let now = new Date();
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
             
-    var month = months[now.getMonth() +1];
+    var month = months[now.getMonth() ];
 
     var day = now.getDate();
     
@@ -91,7 +91,6 @@ const getCurrentTime = ()=>{
 }
 curday.innerHTML = getCurrentDay();
  curDate.innerHTML =getCurrentTime();
-
 
 
 submitBtn.addEventListener('click', getInfo);
